@@ -159,7 +159,7 @@ def calculate_payment(pizza):
 
 
 user_name = input("Enter your name: ")
-user_id = input("Enter your user ID: ")
+user_id = input("Enter your ID number: ")
 credit_card_info = input("Enter your credit card information: ")
 credit_card_password = input("Enter your credit card password: ")
 

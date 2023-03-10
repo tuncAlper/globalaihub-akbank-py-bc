@@ -1,6 +1,6 @@
-import csv
+import csv #gerekli kütüphaneleri import etme
 import datetime
-class Pizza:
+class Pizza:#pizza superclassı ve onun metodlarını oluşturma
     def __init__(self, description, cost):
         self.description = description
         self.cost = cost
@@ -10,7 +10,7 @@ class Pizza:
     
     def get_cost(self):
         return self.cost
-
+#pizza subclasslarını oluşturma
 class ClassicPizza(Pizza):
     def __init__(self):
         super().__init__("Classic Pizza", 10.99)
@@ -25,9 +25,9 @@ class TurkPizza(Pizza):
 
 class PlainPizza(Pizza):
     def __init__(self):
-        super().__init__("Plain Pizza", 16.99)
+        super().__init__("Dominos Pizza", 16.99)
 
-class Decorator(Pizza):
+class Decorator(Pizza): #pizzanın subclassı aşağıdaki malzemelerin superclassı olan decoratorı oluşturuyoruz
     def __init__(self, pizza):
         super().__init__(pizza.get_description(), pizza.get_cost())
         self.pizza = pizza
@@ -114,16 +114,16 @@ class Corn(Decorator):
 
 
 
-      
+    #menu.txt dosyasından okuduğumuz bilgileri kullanıcının menüyü görmesi için yazdırıyoruz
 with open("Menu.txt", "r",encoding="utf-8") as menu_file:
     menu = menu_file.read()
     print(menu)
     
-    
+    #kullanıcı seçimini yapıyor
     pizza_choice = input("Choose a pizza base (1-4): ")
     sauce_choice = input("Choose a sauce (11-16): ")
     
-   
+   #durumlar
     if pizza_choice == "1":
         my_pizza = ClassicPizza()
     elif pizza_choice == "2":
@@ -136,7 +136,7 @@ with open("Menu.txt", "r",encoding="utf-8") as menu_file:
         print("Invalid pizza choice.")
         
     
-    
+    #durumlar
     if sauce_choice == "11":
         my_pizza = Olives(my_pizza)
     elif sauce_choice == "12":
@@ -151,25 +151,25 @@ with open("Menu.txt", "r",encoding="utf-8") as menu_file:
         my_pizza = Corn(my_pizza)
     else:
         print("Invalid sauce choice.") 
-print(my_pizza.get_description())  
-print(my_pizza.get_cost())
+print(my_pizza.get_description())#açıklamayı yazdırıyoruz  
+print(my_pizza.get_cost())#toplam fiyatı yazdırıyoruz
 
 def calculate_payment(pizza):
     return pizza.get_cost()
 
-
+#kullanıcı bilgilerini giriyor
 user_name = input("Enter your name: ")
-user_id = input("Enter your ID number: ")
+user_id = input("Enter your user ID: ")
 credit_card_info = input("Enter your credit card information: ")
 credit_card_password = input("Enter your credit card password: ")
 
 payment = calculate_payment(my_pizza)
 
-
+#sipariş tarihini tutmak için
 now = datetime.datetime.now()
 time_order = now.strftime("%Y-%m-%d %H:%M:%S")
 
-
+#burda da bilgileri database e yazdırıyoruz
 with open("Orders_Database.csv", mode="a",newline="\n") as file:
     writer = csv.writer(file)
     writer.writerow([f"name = {user_name}\n "f"id number = {user_id}\n "f"credit card number = {credit_card_info}\n "f"name of product = {my_pizza.get_description()}\n"f"time = {time_order}\n "f"credit card password = {credit_card_password}\n "f"payment = {payment}"])

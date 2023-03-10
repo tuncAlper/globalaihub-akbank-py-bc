@@ -1,7 +1,7 @@
 import csv #gerekli kütüphaneleri import etme
 import datetime
 #menu.txt dosyasını olşturma
-with open('Menu.txt', 'w') as f:
+with open('Menu.txt', 'w',encoding="utf-8") as f:
     f.write('* Please Choose a Pizza Base: \n1: Classic \n2: Margherita \n3: TurkPizza \n4: PlainPizza \n')
     f.write('* and sauce of your choice: \n11: Olives \n12: Mushrooms \n13: GoatCheese \n14: Meat \n15: Onions \n16: Corn \n')
     f.write('* Thank you! \n')

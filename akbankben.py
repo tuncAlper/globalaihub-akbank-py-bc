@@ -31,7 +31,7 @@ class TurkPizza(Pizza):
 
 class PlainPizza(Pizza):
     def __init__(self):
-        super().__init__("Dominos Pizza", 16.99)
+        super().__init__("Plain Pizza", 16.99)
 
 class Decorator(Pizza): #pizzanın subclassı aşağıdaki malzemelerin superclassı olan decoratorı oluşturuyoruz
     def __init__(self, pizza):
